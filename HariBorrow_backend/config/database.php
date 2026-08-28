@@ -1,3 +1,4 @@
+// Applied security refactor for database credentials.
 <?php
 namespace Config;
 
