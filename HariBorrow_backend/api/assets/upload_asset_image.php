@@ -88,7 +88,8 @@ if (!move_uploaded_file($file['tmp_name'], $destination)) {
 }
 
 // Store relative URL path in DB
-$relativePath = '/SD_FINALPROJECT_GRP6/HariBorrow_backend/uploads/assets/' . $filename;
+$projectRoot = '/' . explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0];
+$relativePath = $projectRoot . '/HariBorrow_backend/uploads/assets/' . $filename;
 
 $stmt = $db->prepare("UPDATE assets SET asset_image = :img WHERE Asset_ID = :id");
 $stmt->execute([':img' => $relativePath, ':id' => $assetId]);

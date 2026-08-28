@@ -2010,8 +2010,9 @@
           formData.append('asset_image', imageFile);
 
           const token = window.api.getToken();
+          const projectRoot = window.location.pathname.split('/')[1] === 'HariBorrow_frontend' || window.location.pathname.split('/')[1] === 'HariBorrow_backend' ? '' : '/' + window.location.pathname.split('/')[1];
           try {
-            await fetch('/SD_FINALPROJECT_GRP6/HariBorrow_backend/api/assets/upload_asset_image.php', {
+            await fetch(projectRoot + '/HariBorrow_backend/api/assets/upload_asset_image.php', {
               method: 'POST',
               headers: { 'Authorization': `Bearer ${token}` },
               body: formData

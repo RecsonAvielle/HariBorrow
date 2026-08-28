@@ -1,5 +1,7 @@
 // Keep this XAMPP-relative so it works across host/port changes.
-const API_BASE_URL = '/SD_FINALPROJECT_GRP6/HariBorrow_backend/api';
+const pathSegments = window.location.pathname.split('/');
+const projectRoot = pathSegments[1] === 'HariBorrow_frontend' || pathSegments[1] === 'HariBorrow_backend' ? '' : '/' + pathSegments[1];
+const API_BASE_URL = projectRoot + '/HariBorrow_backend/api';
 
 const api = {
     // Auth Token Management
@@ -113,7 +115,9 @@ window.api = api;
 
 (function () {
     // Same directory as this file so it works even if the project folder name or host path differs.
-    var jsDir = '/SD_FINALPROJECT_GRP6/HariBorrow_frontend/js/';
+    const pathSegments = window.location.pathname.split('/');
+    const projectRoot = pathSegments[1] === 'HariBorrow_frontend' || pathSegments[1] === 'HariBorrow_backend' ? '' : '/' + pathSegments[1];
+    var jsDir = projectRoot + '/HariBorrow_frontend/js/';
     try {
         var cs = document.currentScript;
         if (cs && cs.src) {
