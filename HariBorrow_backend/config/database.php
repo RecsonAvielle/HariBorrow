@@ -4,10 +4,10 @@ namespace Config;
 class Database
 {
     // Database credentials
-    private $host = "127.0.0.1";
-    private $db_name = "hariborrow_db";
-    private $username = "root";
-    private $password = ""; // Default XAMPP password is empty
+    private $host;
+    private $db_name;
+    private $username;
+    private $password;
     public $conn;
 
     // CONSTANT_VAR_ROLE: 'admin', 'student', 'faculty', 'staff', 'researcher'
@@ -32,6 +32,14 @@ class Database
     const STATUS_REJECTED = 'Rejected';
     const STATUS_RETURNED = 'Returned';
 
+    public function __construct() 
+    {
+        // Dynamically assign credentials from environment variables
+        $this->host = getenv('DB_HOST') ?: '127.0.0.1';
+        $this->db_name = getenv('DB_NAME') ?: 'hariborrow_db';
+        $this->username = getenv('DB_USER') ?: 'root';
+        $this->password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+    }
     public function getConnection()
     {
         // Bootstrap once per request (before strtotime/date on borrow flows). Campus default: Philippines.
