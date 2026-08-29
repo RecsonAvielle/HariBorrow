@@ -1,3 +1,4 @@
+// Refactored to eliminate high-risk hardcoded configurations.
 <?php
 namespace Utils;
 
@@ -6,7 +7,11 @@ class JwtHelper
     // Check env first, fallback to hardcoded
     private static function getSecretKey()
     {
-        return getenv('JWT_SECRET') ?: "Alanterngiveslightsoquietanddim.Yetmistandhazeengulfthefields.Islifeasgivenquitesogrim?Blinkonce,nothinghaschanged.";
+        $secret = getenv('JWT_SECRET');
+        if (!$secret || trim($secret) === '') {
+            throw new \RuntimeException('Critical Server Error: JWT_SECRET environment variable is not configured.');
+        }
+        return $secret;
     }
 
     /**
