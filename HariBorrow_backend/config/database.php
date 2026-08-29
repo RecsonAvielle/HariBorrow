@@ -1,4 +1,3 @@
-// Applied security refactor for database credentials.
 <?php
 namespace Config;
 
@@ -33,7 +32,7 @@ class Database
     const STATUS_REJECTED = 'Rejected';
     const STATUS_RETURNED = 'Returned';
 
-    public function __construct() 
+    public function __construct()
     {
         // Dynamically assign credentials from environment variables
         $this->host = getenv('DB_HOST') ?: '127.0.0.1';

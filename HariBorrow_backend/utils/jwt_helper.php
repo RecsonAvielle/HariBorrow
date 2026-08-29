@@ -1,4 +1,3 @@
-// Refactored to eliminate high-risk hardcoded configurations.
 <?php
 namespace Utils;
 
