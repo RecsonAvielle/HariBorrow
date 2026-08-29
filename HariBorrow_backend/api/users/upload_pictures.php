@@ -68,7 +68,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 
         if (move_uploaded_file($fileTmpPath, $destPath)) {
             // Save the relative URL so the frontend can display it easily
-            $dbPath = "/SD_FINALPROJECT_GRP6/HariBorrow_backend/uploads/profiles/" . $newFileName;
+            $projectRoot = '/' . explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0];
+            $dbPath = $projectRoot . "/HariBorrow_backend/uploads/profiles/" . $newFileName;
             $updates[] = "profile_picture = :profile_picture";
             $params[':profile_picture'] = $dbPath;
             $response['profile_picture'] = $dbPath;
@@ -96,7 +97,8 @@ if (isset($_FILES['background_picture']) && $_FILES['background_picture']['error
 
         if (move_uploaded_file($fileTmpPath, $destPath)) {
             // Save the relative URL so the frontend can display it easily
-            $dbPath = "/SD_FINALPROJECT_GRP6/HariBorrow_backend/uploads/profiles/" . $newFileName;
+            $projectRoot = '/' . explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0];
+            $dbPath = $projectRoot . "/HariBorrow_backend/uploads/profiles/" . $newFileName;
             $updates[] = "background_picture = :background_picture";
             $params[':background_picture'] = $dbPath;
             $response['background_picture'] = $dbPath;
@@ -124,7 +126,8 @@ if (isset($_FILES['id_picture']) && $_FILES['id_picture']['error'] === UPLOAD_ER
 
         if (move_uploaded_file($fileTmpPath, $destPath)) {
             // Save the relative URL so the frontend can display it easily
-            $dbPath = "/SD_FINALPROJECT_GRP6/HariBorrow_backend/uploads/profiles/" . $newFileName;
+            $projectRoot = '/' . explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0];
+            $dbPath = $projectRoot . "/HariBorrow_backend/uploads/profiles/" . $newFileName;
             $updates[] = "id_photo_url = :id_photo_url";
             $updates[] = "id_verification_status = :id_verification_status";
             $params[':id_photo_url'] = $dbPath;

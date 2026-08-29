@@ -987,8 +987,9 @@
             const val = String(rawUrl || '').trim();
             if (!val) return '';
             if (/^https?:\/\//i.test(val)) return val;
-            if (val.includes('SD_FINALPROJECT_GRP6/HariBorrow_backend')) return val.startsWith('/') ? val : '/' + val;
-            return '/SD_FINALPROJECT_GRP6/HariBorrow_backend/' + val.replace(/^\/+/, '');
+            const projectRoot = window.location.pathname.split('/')[1] === 'HariBorrow_frontend' || window.location.pathname.split('/')[1] === 'HariBorrow_backend' ? '' : '/' + window.location.pathname.split('/')[1];
+            const cleanVal = val.replace(/^\/+/, '').replace(/^SD_FINALPROJECT_GRP6\/HariBorrow_backend\//i, '').replace(/^HariBorrow_backend\//i, '');
+            return projectRoot + '/HariBorrow_backend/' + cleanVal;
         }
 
         function fmtDateTime(val) {

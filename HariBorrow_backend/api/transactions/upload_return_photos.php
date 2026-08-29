@@ -126,7 +126,8 @@ foreach ($fileKeys as $f) {
         die(json_encode(["message" => "Failed to save image file.", "status" => "error"]));
     }
 
-    $relativePath = '/SD_FINALPROJECT_GRP6/HariBorrow_backend/uploads/return_photos/' . $filename;
+    $projectRoot = '/' . explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0];
+    $relativePath = $projectRoot . '/HariBorrow_backend/uploads/return_photos/' . $filename;
 
     $stmt = $db->prepare("INSERT INTO return_photos (transaction_id, photo_path) VALUES (:tid, :path)");
     $stmt->execute([':tid' => $transactionId, ':path' => $relativePath]);

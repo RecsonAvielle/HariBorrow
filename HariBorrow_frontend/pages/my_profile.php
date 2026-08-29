@@ -430,7 +430,8 @@
 
       try {
         const token = window.api.getToken();
-        const response = await fetch('/SD_FINALPROJECT_GRP6/HariBorrow_backend/api/users/upload_pictures.php', {
+        const projectRoot = window.location.pathname.split('/')[1] === 'HariBorrow_frontend' || window.location.pathname.split('/')[1] === 'HariBorrow_backend' ? '' : '/' + window.location.pathname.split('/')[1];
+        const response = await fetch(projectRoot + '/HariBorrow_backend/api/users/upload_pictures.php', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`

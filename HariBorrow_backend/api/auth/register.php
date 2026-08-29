@@ -91,7 +91,8 @@ if (
             echo json_encode(["message" => "Unable to upload ID image.", "status" => "error"]);
             exit();
         }
-        $idPhotoDbPath = "/SD_FINALPROJECT_GRP6/HariBorrow_backend/uploads/profiles/" . $newIdFileName;
+        $projectRoot = '/' . explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0];
+        $idPhotoDbPath = $projectRoot . "/HariBorrow_backend/uploads/profiles/" . $newIdFileName;
 
         // We omit User_ID so the database auto-increments it
         $query = "INSERT INTO users 

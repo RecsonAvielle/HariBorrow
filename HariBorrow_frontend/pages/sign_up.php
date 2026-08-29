@@ -1986,7 +1986,8 @@
         requestBody.append('contact', formData.contact || '');
         requestBody.append('id_picture', formData.idPictureFile);
 
-        const response = await fetch('/SD_FINALPROJECT_GRP6/HariBorrow_backend/api/auth/register.php', {
+        const projectRoot = window.location.pathname.split('/')[1] === 'HariBorrow_frontend' || window.location.pathname.split('/')[1] === 'HariBorrow_backend' ? '' : '/' + window.location.pathname.split('/')[1];
+        const response = await fetch(projectRoot + '/HariBorrow_backend/api/auth/register.php', {
           method: 'POST',
           body: requestBody
         }).then(async (r) => {

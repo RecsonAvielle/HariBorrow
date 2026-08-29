@@ -1068,8 +1068,9 @@ $loansForJs = []; // We now use the JWT API in JS to populate loans securely
         validPhotos.forEach(f => formData.append('return_photos[]', f));
 
         const token = window.api.getToken();
+        const projectRoot = window.location.pathname.split('/')[1] === 'HariBorrow_frontend' || window.location.pathname.split('/')[1] === 'HariBorrow_backend' ? '' : '/' + window.location.pathname.split('/')[1];
         try {
-          const uploadRes = await fetch('/SD_FINALPROJECT_GRP6/HariBorrow_backend/api/transactions/upload_return_photos.php', {
+          const uploadRes = await fetch(projectRoot + '/HariBorrow_backend/api/transactions/upload_return_photos.php', {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` },
             body: formData
